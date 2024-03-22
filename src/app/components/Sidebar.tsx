@@ -1,3 +1,4 @@
+import Image from "next/image"
 
 export const Sidebar = () => {
     return (
@@ -7,9 +8,12 @@ export const Sidebar = () => {
 
                     <div className="flex justify-center">
                         <div className="w-14 h-14 rounded-full bg-gray-300 border-2 border-white mt-2">
-                            <img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVxhAxJ4D7MOeTTj6kR9PBeZonW5HM7giKjTbEmR-HMBwf3G1VqGnlwpO1kWrdyIZu8_U&usqp=CAU"
+                            <Image
+                                src="https://w7.pngwing.com/pngs/4/736/png-transparent-female-avatar-girl-face-woman-user-flat-classy-users-icon.png"
                                 className="rounded-full w-auto"
+                                alt="use avatar"
+                                width={100}
+                                height={100}
                             />
                         </div>
                     </div>
