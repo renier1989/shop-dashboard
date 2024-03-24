@@ -6,6 +6,7 @@ import { ImCalculator, ImHeadphones } from "react-icons/im"
 import { SidebarMenuItem } from "."
 import { RiDashboardFill } from "react-icons/ri"
 import { useState } from "react"
+import { MdOutlineCatchingPokemon } from "react-icons/md";
 
 
 const menuItems = [
@@ -18,7 +19,12 @@ const menuItems = [
         path: '/dashboard/counter',
         icon: <ImCalculator size={20} className="text-indigo-600" />,
         title: 'Counter',
-    }
+    },
+    {
+        path: '/dashboard/pokemons',
+        icon: <MdOutlineCatchingPokemon  size={20} className="text-indigo-600" />,
+        title: 'Pokemons',
+    },
 ]
 
 export const Sidebar = () => {
@@ -47,7 +53,7 @@ export const Sidebar = () => {
                     <div>
                         <ul className="mt-6 leading-10 px-4">
                             <li className="mb-3 p-2 rounded-md flex items-center justify-center bg-blue-400 cursor-pointer"
-                                onClick={()=> setshow(!show)}
+                                onClick={() => setshow(!show)}
                             // @click="openMenu !== 1 ? openMenu = 1 : openMenu = null"
                             >
                                 <FaBarsStaggered className="text-white" />
@@ -72,7 +78,7 @@ export const Sidebar = () => {
             <aside
                 className={`menu animate__animated ${show ? 'animate__fadeInLeft' : 'animate__fadeOutLeft'} w-52 relative z-0 flex-shrink-0 px-4 overflow-y-auto bg-gray-100`}
                 style={{ display: show ? 'block' : 'none' }}
-                
+
             // className="animate__animated animate__fadeInLeft w-52 relative z-0 flex-shrink-0 hidden px-4 overflow-y-auto bg-gray-100 sm:block "
             // x-show="openMenu ==  1"
             // @click.away="openMenu = null" 
