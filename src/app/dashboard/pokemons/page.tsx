@@ -1,5 +1,5 @@
-import { PokemonsGrid, PokemonsResponse, SinglePokemon } from "@/app/pokemons";
-import Image from "next/image";
+import { PokemonsGrid, PokemonsResponse, SinglePokemon } from "@/pokemons";
+
 
 const getPokemons = async (limit = 20, offset = 0): Promise<SinglePokemon[]> => {
     const pokeData: PokemonsResponse = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`)
@@ -9,6 +9,8 @@ const getPokemons = async (limit = 20, offset = 0): Promise<SinglePokemon[]> => 
         id: pokemon.url.split('/').at(-2)!,
         name: pokemon.name
     }));
+
+    // throw new Error('Esto es un error de la pagina de los pokemons');
 
     return pokemons;
 }

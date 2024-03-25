@@ -1,6 +1,5 @@
 import Image from "next/image"
-import { FaStar } from "react-icons/fa6"
-import { IoHeartCircleOutline, IoHeartOutline, IoHeartSharp } from "react-icons/io5"
+import { IoHeartOutline } from "react-icons/io5"
 import { SinglePokemon } from ".."
 import Link from "next/link"
 
@@ -19,6 +18,7 @@ export const PokemonCard = ({ pokemon }: Props) => {
                         width={150}
                         height={150}
                         alt={name}
+                        priority={false}
                     />
 
 
