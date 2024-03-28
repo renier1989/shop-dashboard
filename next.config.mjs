@@ -18,6 +18,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "raw.githubusercontent.com",
       },
+      {
+        protocol: "https",
+        hostname: "static-00.iconduck.com",
+      },
     ],
   },
 };
