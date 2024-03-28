@@ -44,7 +44,7 @@ export const PokemonCard = ({ pokemon }: Props) => {
                 </div>
                 <div className="p-6">
                     <Link
-                    href={`/dashboard/pokemon/${id}`}
+                    href={`/dashboard/pokemons/${name}`}
                         className="block w-full select-none rounded-lg bg-indigo-500 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-indigo-500/40 focus:opacit-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                         type="button"
                         data-ripple-light="true"
