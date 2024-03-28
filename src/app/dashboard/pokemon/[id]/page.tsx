@@ -4,31 +4,43 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 interface Props {
-  params: { id: string}
+  params: { id: string }
 }
 
-export async function generateMetadata({params}:Props):Promise<Metadata>{
+// NOTA: ESTO SOLO SE VA A EJECUTAR EN EL BUILD
+// esto es lo que genera las paginas de forma estatica. 
+// se retorn un arreglo con los parametros que se quieren generar inicialmente.
+export async function generateStaticParams() {
+  // con esto genero un arreglo de 151 numeros que seria los primero 151 pokemons
+  const firstPokemons = Array.from({ length: 151 }).map((v, i) => `${i + 1}`);
+  return firstPokemons.map((idPokemon)=>({ id: `${idPokemon}` }));
+  // // esto seria un ejemplo de los parametros que se generarian inicialmente
+  // return [{ id: '1' },{ id: '2' },{ id: '3' },{ id: '4' },{ id: '5' },{ id: '6' },{ id: '7' },{ id: '8' }];
+}
+
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
-    const { id , name} = await getPokemon(params.id);
+    const { id, name } = await getPokemon(params.id);
     return {
       title: `(${id}) - ${name}`,
-      description : `Pagin de ${name}`
+      description: `Pagin de ${name}`
     }
-    
+
   } catch (error) {
     return {
       title: `Titulo Pokemon`,
-      description : `Desciripcion de un pokemon`
+      description: `Desciripcion de un pokemon`
     }
   }
 }
 
-const getPokemon = async (id:string):Promise<PokemonResponse>=>{
+const getPokemon = async (id: string): Promise<PokemonResponse> => {
   try {
     const pokeInfo = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
       cache: 'force-cache'
     })
-    .then(rs => rs.json());
+      .then(rs => rs.json());
     console.log(pokeInfo.name);
     return pokeInfo
   } catch (error) {
@@ -36,8 +48,8 @@ const getPokemon = async (id:string):Promise<PokemonResponse>=>{
   }
 }
 
-export default async function PokemonPage({params}: Props) {
-  const {id} = params
+export default async function PokemonPage({ params }: Props) {
+  const { id } = params
   const pokemon = await getPokemon(id);
   return (
     <div className="flex mt-5 flex-col items-center text-slate-800">
