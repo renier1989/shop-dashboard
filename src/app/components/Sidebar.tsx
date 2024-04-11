@@ -7,6 +7,7 @@ import { SidebarMenuItem } from "."
 import { RiDashboardFill } from "react-icons/ri"
 import { useState } from "react"
 import { MdOutlineCatchingPokemon } from "react-icons/md";
+import { BiHeart } from "react-icons/bi";
 
 
 const menuItems = [
@@ -24,6 +25,11 @@ const menuItems = [
         path: '/dashboard/pokemons',
         icon: <MdOutlineCatchingPokemon  size={20} className="text-indigo-600" />,
         title: 'Pokemons',
+    },
+    {
+        path: '/dashboard/favorites',
+        icon: <BiHeart  size={20} className="text-indigo-600" />,
+        title: 'Favoritos',
     },
 ]
 
