@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import CounterSlice from './counter/CounterSlice'
+import CounterReducer from './counter/CounterSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 export const store = configureStore({
   reducer: {
-    CounterSlice
+    counter: CounterReducer // renombre de CounterReducer a counter para poderlo consumir con un nombre mas amigable
   },
 })
 
@@ -12,3 +13,7 @@ export const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch
+
+// Use throughout your app instead of plain `useDispatch` and `useSelector`
+export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
+export const useAppSelector = useSelector.withTypes<RootState>();
