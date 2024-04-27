@@ -11,7 +11,13 @@ interface PokemonsFavorites {
     [key:string]: SinglePokemon
 }
 
+const getLocalPokemons = ():PokemonsFavorites =>{
+    const localPokes = JSON.parse(localStorage.getItem('favorite-pokemons') ?? '{}')
+    return localPokes;
+}
+
 const initialState:PokemonsFavorites = {
+    ...getLocalPokemons()
     // '1':{id:'1',name:'Bulbasaur'}
 }
 
@@ -27,10 +33,15 @@ const PokemonsSlice = createSlice({
         // si existe elimino del state el pokemon
         if(!!state[id]){
             delete state[id];
-            return;
+            // return;
+        }else{
+            // si no existe lo agrego al state
+            state[id] = pokemon
         }
-        // si no existe lo agrego al state
-        state[id] = pokemon
+
+        // aqui ponemos los pokemons en el localstorage
+        // NOTA: ESTO ES ALGO QUE NO ESTA RECOMENADO HACER EN REDUX
+        localStorage.setItem('favorite-pokemons', JSON.stringify(state));
 
     }
   }
