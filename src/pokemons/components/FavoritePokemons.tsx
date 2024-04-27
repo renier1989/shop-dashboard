@@ -5,12 +5,12 @@ import { useState } from "react";
 import { MdHeartBroken } from "react-icons/md";
 
 export const FavoritePokemons = () => {
-  const pokemons = useAppSelector(state => Object.values(state.pokemons));
-  const [favorites, setFavorites] = useState(pokemons)
+  const pokemons = useAppSelector(state => Object.values(state.pokemons.favorites));
+  // const [favorites, setFavorites] = useState(pokemons)
   return (
     <>
       {
-        pokemons.length ? (<PokemonsGrid pokemons={favorites} />) : (<NoPokemonsFavorites />)
+        pokemons.length ? (<PokemonsGrid pokemons={pokemons} />) : (<NoPokemonsFavorites />)
       }
     </>
   )

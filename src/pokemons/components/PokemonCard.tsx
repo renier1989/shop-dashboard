@@ -13,7 +13,7 @@ interface Props {
 export const PokemonCard = ({ pokemon }: Props) => {
     const { id, name } = pokemon
     // para usar esto , el componente tiene que estar en use client
-    const isFavorite = useAppSelector(state => !!state.pokemons[id])
+    const isFavorite = useAppSelector(state => !!state.pokemons.favorites[id])
     // console.log(isFavorite);
     const dispatch = useAppDispatch();
     const onFavorite = ()=>{
