@@ -3,7 +3,8 @@ import Image from "next/image"
 import { IoHeart, IoHeartOutline } from "react-icons/io5"
 import { SinglePokemon } from ".."
 import Link from "next/link"
-import { useAppSelector } from "@/store"
+import { useAppDispatch, useAppSelector } from "@/store"
+import { toggleFavorite } from "@/store/pokemons/PokemonsSlice"
 
 interface Props {
     pokemon: SinglePokemon
@@ -14,6 +15,10 @@ export const PokemonCard = ({ pokemon }: Props) => {
     // para usar esto , el componente tiene que estar en use client
     const isFavorite = useAppSelector(state => !!state.pokemons[id])
     // console.log(isFavorite);
+    const dispatch = useAppDispatch();
+    const onFavorite = ()=>{
+        dispatch(toggleFavorite(pokemon));
+    }
 
     return (
         <>
@@ -26,9 +31,6 @@ export const PokemonCard = ({ pokemon }: Props) => {
                         alt={name}
                         priority={false}
                     />
-
-
-
                 </div>
                 <div className="pt-4 flex flex-col items-center justify-center">
                     <div className=" flex items-center justify-between">
@@ -39,11 +41,10 @@ export const PokemonCard = ({ pokemon }: Props) => {
                                 className=" ml-4 h-8 max-h-[32px] w-8 max-w-[32px] select-none rounded-full text-center align-middle font-sans text-xs font-medium uppercase text-red-500 transition-all hover:bg-red-500/10 active:bg-red-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button"
                                 data-ripple-dark="true"
+                                onClick={onFavorite}
                             >
                                 <span className=" -translate-y-1/2 -translate-x-1/2 transform">
                                     {isFavorite ? (<IoHeart size={30} />) : (<IoHeartOutline size={30} />)}
-
-
                                 </span>
                             </button>
                         </h5>
