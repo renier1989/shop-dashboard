@@ -3,7 +3,7 @@ import Image from "next/image"
 import { BsFillQuestionCircleFill } from "react-icons/bs"
 import { FaBarsStaggered, FaPowerOff } from "react-icons/fa6"
 import { ImCalculator, ImHeadphones } from "react-icons/im"
-import { SidebarMenuItem } from "."
+import { SidebarMenuItem } from ".."
 import { RiDashboardFill } from "react-icons/ri"
 import { useState } from "react"
 import { MdOutlineCatchingPokemon } from "react-icons/md";
