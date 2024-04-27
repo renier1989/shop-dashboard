@@ -1,7 +1,9 @@
+'use client'
 import Image from "next/image"
-import { IoHeartOutline } from "react-icons/io5"
+import { IoHeart, IoHeartOutline } from "react-icons/io5"
 import { SinglePokemon } from ".."
 import Link from "next/link"
+import { useAppSelector } from "@/store"
 
 interface Props {
     pokemon: SinglePokemon
@@ -9,6 +11,10 @@ interface Props {
 
 export const PokemonCard = ({ pokemon }: Props) => {
     const { id, name } = pokemon
+    // para usar esto , el componente tiene que estar en use client
+    const isFavorite = useAppSelector(state => !!state.pokemons[id])
+    // console.log(isFavorite);
+
     return (
         <>
             <div className="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg">
@@ -35,7 +41,9 @@ export const PokemonCard = ({ pokemon }: Props) => {
                                 data-ripple-dark="true"
                             >
                                 <span className=" -translate-y-1/2 -translate-x-1/2 transform">
-                                    <IoHeartOutline size={30} />
+                                    {isFavorite ? (<IoHeart size={30} />) : (<IoHeartOutline size={30} />)}
+
+
                                 </span>
                             </button>
                         </h5>
@@ -44,7 +52,7 @@ export const PokemonCard = ({ pokemon }: Props) => {
                 </div>
                 <div className="p-6">
                     <Link
-                    href={`/dashboard/pokemons/${name}`}
+                        href={`/dashboard/pokemons/${name}`}
                         className="block w-full select-none rounded-lg bg-indigo-500 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-indigo-500/40 focus:opacit-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                         type="button"
                         data-ripple-light="true"
