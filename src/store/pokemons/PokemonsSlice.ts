@@ -12,7 +12,7 @@ interface PokemonsFavorites {
 }
 
 const initialState:PokemonsFavorites = {
-    '1':{id:'1',name:'Bulbasaur'}
+    // '1':{id:'1',name:'Bulbasaur'}
 }
 
 const PokemonsSlice = createSlice({
