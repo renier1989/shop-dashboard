@@ -8,15 +8,31 @@ interface Props {
     value?: number;
 }
 
+export interface CounterResponse {
+    method:  string;
+    counter: number;
+}
+
+
+const getApiCounter = async():Promise<CounterResponse>=>{
+    const data = fetch('/api/counter').then(rs=>rs.json())
+    return data
+}
+
 export const CounterShopingCart = ({ value = 10 }: Props) => {
     const count = useAppSelector(state => state.counter.count)
     const dispatch = useAppDispatch()
     // const [count, setCount] = useState(value);
 
     // simula el seteo de la variable que esta en el estore
+    // useEffect(() => {
+    //     dispatch(initialReadyState(value))
+    // }, [dispatch, value])
+
     useEffect(() => {
-        dispatch(initialReadyState(value))
-    }, [dispatch, value])
+        getApiCounter().then(({counter})=>dispatch(initialReadyState(counter)))
+    }, [dispatch])
+    
 
 
     return (
